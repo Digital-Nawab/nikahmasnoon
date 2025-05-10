@@ -37,7 +37,7 @@ function allSuccessPartner() {
                   <div className="container">
                       <div className="text-center w-full">
                           <h1 className="text-3xl sm:text-4xl lg:text-4xl font-bold text-gray-800">Our Success <span className="text-green-700">Life Partner</span> Match</h1>
-                          <p className="text-xl sm:text-2xl font-medium text-green-600 mt-1">Best Wishing </p>
+                          <p className="text-xl sm:text-2xl font-medium text-green-600 mt-1">Best Wishes </p>
 
                           <div className="py-10">
                               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -88,7 +88,7 @@ function allSuccessPartner() {
               <div className="container">
                   <div className="text-center w-full">
                       <h1 className="text-3xl sm:text-4xl lg:text-4xl font-bold text-gray-800">Our Success <span className="text-green-700">Life Partner</span> Match</h1>
-                      <p className="text-xl sm:text-2xl font-medium text-green-600 mt-1">Best Wishing </p>
+                      <p className="text-xl sm:text-2xl font-medium text-green-600 mt-1">Best Wishes </p>
 
                       <div className="py-10">
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">

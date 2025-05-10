@@ -178,11 +178,19 @@ const Contact = () => {
                       <div className="space-y-2">
                         <Typography color="gray" className="text-sm flex items-center">
                           <i className="fas fa-map-marker-alt text-red-500 mr-2 animate-bounce"></i>
-                          Prayagraj, Uttar Pradesh, India
+                          Lucknow, Uttar Pradesh, India
                         </Typography>
                         <Typography color="gray" className="text-sm flex items-center">
                           <i className="fas fa-envelope text-blue-500 mr-2 animate-spin"></i>
                           info@nikahmasnoon.com
+                        </Typography>
+                        <Typography color="gray" className="text-sm flex items-center">
+                          <i className="fas fa-phone text-green-500 mr-2 animate-tada"></i>
+                          +91 9214 205 090
+                        </Typography>
+                        <Typography color="gray" className="text-sm flex items-center">
+                          <i className="fas fa-phone text-green-500 mr-2 animate-tada"></i>
+                          +91 9511 135 090
                         </Typography>
                         <Typography color="gray" className="text-sm flex items-center">
                           <i className="fas fa-phone text-green-500 mr-2 animate-tada"></i>

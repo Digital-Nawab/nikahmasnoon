@@ -132,14 +132,14 @@ function Myintrest() {
           )}
           {interest.is_active === '1' && (
             <>
-              <a
+              {/* <a
                 href={`https://api.whatsapp.com/send?phone=${interest.interested_to_user?.phone}&text=Hi ${interest.interested_to_user?.name}, ${interest.interested_from_user?.name} is interested in you.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700"
               >
                 Chat Now
-              </a>
+              </a> */}
               <Button
                 size="sm"
                 color="red"

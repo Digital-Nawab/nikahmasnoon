@@ -7,10 +7,10 @@ const Layout = ({ children }) => {
     return (
         <>
             <Navbar />
-            <div className={`mt-[${sessionStorage.getItem('token') ? '110' : '90'}px]`}> 
+            <div className={`mt-[70px] lg:mt-[${sessionStorage.getItem('token') ? '110' : '90'}px]`}> 
                 {children}
             </div>
-            
+            <Footer/>
         </>
     )
 }

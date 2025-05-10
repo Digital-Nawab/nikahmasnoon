@@ -318,7 +318,6 @@ function Packages() {
                       }
 
                       const daysRemaining = Math.floor((new Date(subscribe.end_date) - new Date()) / (1000 * 60 * 60 * 24));
-                      const statusColor = daysRemaining <= 30 ? 'red' : daysRemaining <= 45 ? 'purple' : daysRemaining <= 60 ? 'blue' : 'green';
 
                       return (
                         <tr key={subscribe.id}>
@@ -332,8 +331,8 @@ function Packages() {
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscribe.price}</td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscribe.payment_type}</td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-green-500">
-                            <span className={`p-2 bg-${statusColor}-500 hover:bg-${statusColor}-600 text-white font-bold rounded-sm`}>
-                              {daysRemaining} days remaining
+                            <span className={`p-2 ${daysRemaining < 0 ? 'bg-gray-500' : 'bg-green-500'} text-white font-bold rounded-sm`}>
+                              {daysRemaining < 0 ? 'Expired' : `${daysRemaining} days remaining`}
                             </span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{subscribe.end_date}</td>

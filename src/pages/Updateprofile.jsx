@@ -41,7 +41,7 @@ function Updateprofile() {
           {tabs.map((tab, index) => (
             <motion.button
               key={index}
-              className={`px-4 py-2 m-1 rounded-md ${activeTab === index ? 'bg-green-600 text-white' : 'bg-green-100 text-green-700'}`}
+              className={`px-4 py-2 m-1  rounded-md ${activeTab === index ? 'bg-green-600 text-white' : 'bg-green-100 text-green-700'}`}
               onClick={() => handleTabChange(index)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
