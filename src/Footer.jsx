@@ -21,7 +21,9 @@ function Footer() {
       <div className="container mx-auto">
         <div className="flex flex-wrap justify-between items-center">
           <div className="mb-4">
-            <h2 className="text-3xl text-green-400 font-bold">Nikah Masnoon India</h2>
+            <h2 className="text-3xl text-green-400 font-bold">
+              Nikah Masnoon India
+            </h2>
             <p color="green" className="text-light-green-500">
               Find your perfect match with us.
             </p>
@@ -52,7 +54,7 @@ function Footer() {
                   target="_blank"
                   className="text-white hover:text-green-800"
                 >
-                  Islamic Blogs
+                  Nikah Counselling
                 </a>
               </li>
             </ul>
@@ -64,7 +66,7 @@ function Footer() {
             <ul className="list-disc pl-5">
               <li className="pt-2">
                 <a
-                  href="https://wa.me/919214205090"
+                  href="https://nikahmasnoon.blogspot.com/2025/07/custumer-care.html"
                   target="_blank"
                   className="text-white hover:text-gray-400"
                 >
@@ -124,12 +126,13 @@ function Footer() {
                 <FaEnvelopeSquare />
               </a>
               <a
-                href="tel:+919214205090"
+                href="tel:+919511135090"
                 className="text-green-500 text-3xl hover:text-green-400"
               >
                 <FaPhoneSquare />
               </a>
             </div>
+            
           </div>
         </div>
         <hr className="my-4 border-t border-white w-full" />

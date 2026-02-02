@@ -54,13 +54,13 @@ function Gallery() {
               >
                 {gallery.map((img, index) => (
                   <a
-                    href={`https://nikahmasnoon.digitalnawab.com/${img.image}`}
+                    href={`https://admin.nikahmasnoon.com/${img.image}`}
                     key={index}
                     className="overflow-hidden"
                   >
                     <img
                       className="h-80 w-full object-cover object-top rounded-lg transform transition duration-500 hover:scale-110 hover:object-top"
-                      src={`https://nikahmasnoon.digitalnawab.com/${img.image}`}
+                      src={`https://admin.nikahmasnoon.com/${img.image}`}
                       alt={`gallery-photo-${index}`}
                     />
                   </a>

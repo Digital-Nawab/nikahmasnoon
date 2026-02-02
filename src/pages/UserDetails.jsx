@@ -21,11 +21,17 @@ function UserDetails() {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [userGallery, setUserGallery] = useState();
   const [ispremium, setIspremium] = useState(
     sessionStorage.getItem("ispremium")
   );
+  const [isUserPremium, setIsUserPremium] = useState(false);
+
+  console.log(ispremium == 'false' , "ispremium");
+  console.log(isUserPremium , "isUserPremium");
 
   useEffect(() => {
+    setIspremium(sessionStorage.getItem("ispremium"));
     const fetchUserData = async () => {
       const userId = window.location.pathname.split("/").pop(); // Extracting the user ID from the URL
       try {
@@ -34,7 +40,10 @@ function UserDetails() {
             Authorization: "1|MohDsaLeEmDIgitTalNawab|NikahMasnoon",
           },
         });
+        console.log(response, "response");
         setUserData(response?.data?.data);
+        setIsUserPremium(response?.data?.has_active_subscription);
+        setUserGallery(response?.data?.gallery);
       } catch (err) {
         console.error(err);
         setError("Error fetching user data");
@@ -43,10 +52,8 @@ function UserDetails() {
       }
     };
     fetchUserData();
-
-    console.log(userData, "userData");
   }, []);
-
+  // console.log(userGallery, "userData");
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -106,18 +113,36 @@ function UserDetails() {
               <img
                 src={
                   userData?.image
-                    ? `${URLIMAGE}/${userData.image}`
+                    ? `${URLIMAGE}/${userData.image.replace(/\\/g, "/")}`
                     : "https://via.placeholder.com/150"
                 }
                 alt="Profile"
-                className="rounded-full w-20 h-20 opject-top object-top object-cover mb-4"
+                className="rounded-full w-20 h-20 object-top object-cover mb-1"
               />
-              <h2 className="text-xl font-semibold text-green-800">
-                {userData?.name ? userData.name : "Name not available"}
-              </h2>
+              <p className="text-sm mb-3 text-gray-800">{userData?.user_id}</p>
+              <div className="flex items-center">
+                <h2 className="text-xl font-semibold text-green-800">
+                  {userData?.name ? userData.name : "Name not available"}
+                </h2>
+                {isUserPremium && (
+                  <span>
+                    <svg
+                      className="ms-1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      fill="#298f06"
+                      version="1.1"
+                      viewBox="0 0 512 512"
+                      xmlSpace="preserve"
+                    >
+                      <path d="M434.068 46.758L314.607 9.034a194.624 194.624 0 00-117.214 0L77.932 46.758C52.97 54.641 36 77.796 36 103.973v207.39a120 120 0 0048.816 96.607l117.032 86.234a91.29 91.29 0 00108.304 0l117.032-86.234A120 120 0 00476 311.363v-207.39c0-26.177-16.97-49.332-41.932-57.215zm-86.144 180.958l-98.995 98.995c-11.716 11.716-30.711 11.716-42.426 0l-42.427-42.426c-11.716-11.716-11.716-30.711 0-42.426 11.716-11.716 30.711-11.716 42.426 0l21.213 21.213 77.782-77.782c11.716-11.716 30.711-11.716 42.426 0 11.717 11.715 11.717 30.71.001 42.426z"></path>
+                    </svg>
+                  </span>
+                )}
+              </div>
               <p className="text-gray-800">
-                {ispremium ? userData?.email : "xxxxxx@gmail.com"}
-                {/* {userData?.email ? userData.email : "Email not available"} */}
+                {ispremium == 'false'  ? "xxxxxx@gmail.com" : userData?.email}
               </p>
             </div>
             <nav className="space-y-2">
@@ -126,15 +151,15 @@ function UserDetails() {
                   {[
                     {
                       icon: <FaPhoneAlt />,
-                      text: userData?.mobile
-                        ? userData.mobile
-                        : "Mobile not available",
+                      text:
+                        ispremium != "false" ? userData.mobile : "xxxxxxxxxxxx",
                     },
                     {
                       icon: <FaWhatsapp />,
-                      text: userData?.Whatsapp_no
-                        ? userData.Whatsapp_no
-                        : "Whatsapp number not available",
+                      text:
+                        ispremium != "false"
+                          ? userData.Whatsapp_no
+                          : "xxxxxxxxxx",
                     },
                     {
                       icon: <FaMapMarkerAlt />,
@@ -147,7 +172,7 @@ function UserDetails() {
                       <span className="bg-light-green-200 hover:bg-green-600 hover:text-white rounded-lg p-1.5 me-2">
                         {item.icon}
                       </span>
-                      <span className="text-gray-600">
+                      <span className="text-gray-600 capitalize">
                         {ispremium ? item?.text : "xxxxxxxxxx"}
                       </span>
                       <button className="bg-gray-300 hover:bg-green-600 hover:text-white ms-2">
@@ -245,27 +270,30 @@ function UserDetails() {
                   {userData?.about ? userData.about : "About not available"}
                 </p>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold  text-green-600 flex items-center">
-                  <FaImages className="text-green-600  text-2xl bg-green-200 rounded-sm mb-1 p-1 mr-2" />
-                  Gallery
-                </h3>
-                <hr className="border-green-100 border-b-2  mt-1 mb-3" />
-                <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-                  {userData?.gallery_image
-                    ? userData.gallery_image
-                        .split(",")
-                        .map((image, index) => (
-                          <img
-                            key={index}
-                            src={`https://nikahmasnoon.digitalnawab.com/assets/user/${image.trim()}`}
-                            alt={`Gallery Image ${index + 1}`}
-                            className="rounded-lg shadow-md"
-                          />
-                        ))
-                    : "Gallery images not available"}
-                </div>
-              </div>
+              {userGallery.length > 0 && (
+                <>
+                  <div>
+                    <h3 className="text-xl font-semibold  text-green-600 flex items-center">
+                      <FaImages className="text-green-600  text-2xl bg-green-200 rounded-sm mb-1 p-1 mr-2" />
+                      Gallery
+                    </h3>
+                    <hr className="border-green-100 border-b-2  mt-1 mb-3" />
+                    <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+                      {userGallery.length > 0
+                        ? userGallery.map((image, index) => (
+                            <img
+                              key={index}
+                              src={`https://admin.nikahmasnoon.com/${image?.image_path}`}
+                              alt={`Gallery Image ${index + 1}`}
+                              className="rounded-lg shadow-md"
+                            />
+                          ))
+                        : "Gallery images not available"}
+                    </div>
+                  </div>
+                </>
+              )}
+
               <div>
                 <h3 className="text-xl font-semibold  text-green-600  flex items-center">
                   <FaUser className="text-green-600  text-2xl bg-green-200 rounded-sm mb-1 p-1 mr-2" />

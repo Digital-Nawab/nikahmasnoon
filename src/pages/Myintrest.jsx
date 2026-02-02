@@ -16,6 +16,7 @@ import Layout from "../Layout";
 import axios from "axios";
 import { URL, URLIMAGE } from "../api";
 import { Toaster, toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 function Myintrest() {
   const [interests, setInterests] = useState();
@@ -91,17 +92,20 @@ function Myintrest() {
   };
 
   const renderCards = (data) => {
+    console.log(data);
     return data.map((interest, index) => (
       <Card
         key={index}
         className="w-full shadow-lg flex flex-col sm:flex-row items-center p-2 border-2 border-green-100 rounded-lg bg-white hover:bg-gradient-to-t from-green-50 to-green-200 transition-all duration-300 ease-in-out"
       >
-        <Avatar
-          src={`${URLIMAGE}/${interest.interested_to_user?.image}`}
-          alt="user avatar"
-          size="xl"
-          className="mb-4 sm:mb-0 sm:mr-4"
-        />
+        <Link to={`/user-details/${btoa(interest.id)}`}>
+          <Avatar
+            src={`${URLIMAGE}/${interest.interested_to_user?.image}`}
+            alt="user avatar"
+            size="xl"
+            className="mb-4 sm:mb-0 sm:mr-4"
+          />
+        </Link>
         <CardBody className="flex-1 p-2">
           <Typography variant="h6" color="blue-gray" className="mb-2">
             {interest.interested_to_user?.name}
@@ -110,6 +114,8 @@ function Myintrest() {
             <FaFireAlt className="inline text-green-400 mr-1" />{" "}
             {interest.interested_to_user?.dob?.split("-")[0]}y |{" "}
             <strong>{interest.interested_to_user?.marital_status}</strong>
+            {interest.interested_to_user?.dob?.split("-")[0]}y |{" "}
+            <strong>{interest.interested_to_user?.city}</strong>
           </Typography>
           <Typography color="gray" className="text-xs font-semibold sm:text-sm">
             <FaBriefcase className="inline text-green-400 mr-1" />{" "}
@@ -145,14 +151,16 @@ function Myintrest() {
           )}
           {interest.is_active === "1" && (
             <>
-              {/* <a
-                href={`https://api.whatsapp.com/send?phone=${interest.interested_to_user?.phone}&text=Hi ${interest.interested_to_user?.name}, ${interest.interested_to_user?.name} is interested in you.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700"
-              >
-                Chat Now
-              </a> */}
+            <Link to={`/user-details/${btoa(interest.id)}`}>
+                          <Button
+                            variant="contained"
+                            size="sm"
+                            color="green"
+                            className="hover:bg-green-700 w-[110px]"
+                          >
+                            View Profile
+                          </Button>
+                        </Link>
               <Button
                 size="sm"
                 color="red"
@@ -190,10 +198,10 @@ function Myintrest() {
                 Send Requests
               </Tab>
               <Tab key="accept" className="active:bg-green-700" value="accept">
-                Accept Requests
+                Accepted Requests
               </Tab>
               <Tab key="reject" className="active:bg-green-700" value="reject">
-                Reject Requests
+                Rejected Requests
               </Tab>
             </TabsHeader>
             <TabsBody className="shadow-xl rounded-lg bg-white p-4">
@@ -204,12 +212,14 @@ function Myintrest() {
                       key={index}
                       className="w-full shadow-lg flex flex-col sm:flex-row items-center p-2 border-2 border-green-100 rounded-lg bg-white hover:bg-gradient-to-t from-green-50 to-green-200 transition-all duration-300 ease-in-out"
                     >
-                      <Avatar
-                        src={`${URLIMAGE}/${item.interested_from_user?.image}`}
-                        alt="user avatar"
-                        size="xl"
-                        className="mb-4 sm:mb-0 sm:mr-4"
-                      />
+                      <Link to={`/user-details/${btoa(item.id)}`}>
+                        <Avatar
+                          src={`${URLIMAGE}/${item.interested_to_user?.image}`}
+                          alt="user avatar"
+                          size="xl"
+                          className="mb-4 sm:mb-0 sm:mr-4"
+                        />
+                      </Link>
                       <CardBody className="flex-1 p-2">
                         <Typography
                           variant="h6"
@@ -227,6 +237,7 @@ function Myintrest() {
                           <strong>
                             {item.interested_from_user?.marital_status}
                           </strong>
+                          | <strong>{item.interested_from_user?.city}</strong>
                         </Typography>
                         <Typography
                           color="gray"
@@ -244,21 +255,27 @@ function Myintrest() {
                           {item.interested_from_user?.sub_caste}
                         </Typography>
                       </CardBody>
-                      <div className="flex flex-col items-end gap-2 mt-4 me-4 sm:mt-0">
+                      <div className="flex flex-col  gap-2 justify-between sm:mt-0">
+                        <Link
+                          to={`/user-details/${btoa(item.id)}`}
+                          className="hover:bg-yellow-700 bg-yellow-500 text-white font-bold py-2 px-4 rounded"
+                        >
+                          View Profile
+                        </Link>
                         <Button
                           size="sm"
                           color="green"
                           onClick={() => InterestStatus(item.id, 1)}
-                          className="hover:bg-green-700 w-[110px]"
+                          className="hover:bg-green-700 "
                         >
                           Accept now
                         </Button>
-                        <br />
+
                         <Button
                           size="sm"
                           color="red"
                           onClick={() => InterestStatus(item.id, 2)}
-                          className="hover:bg-red-700 w-[110px]"
+                          className="hover:bg-red-700 "
                         >
                           Deny NOw
                         </Button>
@@ -275,12 +292,14 @@ function Myintrest() {
                       key={index}
                       className="w-full shadow-lg flex flex-col sm:flex-row items-center p-2 border-2 border-green-100 rounded-lg bg-white hover:bg-gradient-to-t from-green-50 to-green-200 transition-all duration-300 ease-in-out"
                     >
-                      <Avatar
-                        src={`${URLIMAGE}/${item.interested_to_user?.image}`}
-                        alt="user avatar"
-                        size="xl"
-                        className="mb-4 sm:mb-0 sm:mr-4"
-                      />
+                      <Link to={`/user-details/${btoa(item.id)}`}>
+                        <Avatar
+                          src={`${URLIMAGE}/${item.interested_to_user?.image}`}
+                          alt="user avatar"
+                          size="xl"
+                          className="mb-4 sm:mb-0 sm:mr-4"
+                        />
+                      </Link>
                       <CardBody className="flex-1 p-2">
                         <Typography
                           variant="h6"
@@ -298,6 +317,7 @@ function Myintrest() {
                           <strong>
                             {item.interested_to_user?.marital_status}
                           </strong>
+                          | <strong>{item.interested_to_user?.city}</strong>
                         </Typography>
                         <Typography
                           color="gray"
@@ -337,12 +357,14 @@ function Myintrest() {
                       key={index}
                       className="w-full shadow-lg flex flex-col sm:flex-row items-center p-2 border-2 border-green-100 rounded-lg bg-white hover:bg-gradient-to-t from-green-50 to-green-200 transition-all duration-300 ease-in-out"
                     >
-                      <Avatar
-                        src={`${URLIMAGE}/${item.interested_from_user?.image}`}
-                        alt="user avatar"
-                        size="xl"
-                        className="mb-4 sm:mb-0 sm:mr-4"
-                      />
+                      <Link to={`/user-details/${btoa(item.id)}`}>
+                        <Avatar
+                          src={`${URLIMAGE}/${item.interested_to_user?.image}`}
+                          alt="user avatar"
+                          size="xl"
+                          className="mb-4 sm:mb-0 sm:mr-4"
+                        />
+                      </Link>
                       <CardBody className="flex-1 p-2">
                         <Typography
                           variant="h6"
@@ -360,6 +382,7 @@ function Myintrest() {
                           <strong>
                             {item.interested_from_user?.marital_status}
                           </strong>
+                          | <strong>{item.interested_from_user?.city}</strong>
                         </Typography>
                         <Typography
                           color="gray"
@@ -378,15 +401,16 @@ function Myintrest() {
                         </Typography>
                       </CardBody>
                       <div className="flex flex-col items-end gap-2 mt-4 me-4 sm:mt-0">
-                        {/* <Button
-                          variant="contained"
-                          size="sm"
-                          color="green"
-                          onClick={() => window.open(`https://api.whatsapp.com/send?phone=${item.interested_to_user?.phone}&text=Hi ${item.interested_to_user?.name}, ${item.interested_to_user?.name} is interested in you.`, '_blank', 'noopener,noreferrer')}
-                          className="hover:bg-green-700 w-[110px]"
-                        >
-                          Chat Now
-                        </Button> */}
+                        <Link to={`/user-details/${btoa(item.id)}`}>
+                          <Button
+                            variant="contained"
+                            size="sm"
+                            color="green"
+                            className="hover:bg-green-700 w-[110px]"
+                          >
+                            View Profile
+                          </Button>
+                        </Link>
                         <Button
                           size="sm"
                           color="red"
@@ -404,12 +428,14 @@ function Myintrest() {
                       key={index}
                       className="w-full shadow-lg flex flex-col sm:flex-row items-center p-2 border-2 border-green-100 rounded-lg bg-white hover:bg-gradient-to-t from-green-50 to-green-200 transition-all duration-300 ease-in-out"
                     >
-                      <Avatar
-                        src={`${URLIMAGE}/${item.interested_to_user?.image}`}
-                        alt="user avatar"
-                        size="xl"
-                        className="mb-4 sm:mb-0 sm:mr-4"
-                      />
+                      <Link to={`/user-details/${btoa(item.id)}`}>
+                        <Avatar
+                          src={`${URLIMAGE}/${item.interested_to_user?.image}`}
+                          alt="user avatar"
+                          size="xl"
+                          className="mb-4 sm:mb-0 sm:mr-4"
+                        />
+                      </Link>
                       <CardBody className="flex-1 p-2">
                         <Typography
                           variant="h6"
@@ -426,7 +452,8 @@ function Myintrest() {
                           {item.interested_to_user?.dob?.split("-")[0]}y |{" "}
                           <strong>
                             {item.interested_to_user?.marital_status}
-                          </strong>
+                          </strong>{" "}
+                          | <strong>{item.interested_to_user?.city}</strong>
                         </Typography>
                         <Typography
                           color="gray"
@@ -445,15 +472,16 @@ function Myintrest() {
                         </Typography>
                       </CardBody>
                       <div className="flex flex-col gap-2 items-end mt-4 me-4 sm:mt-0">
-                        {/* <Button
-                          variant="contained"
-                          size="sm"
-                          color="green"
-                          onClick={() => window.open(`https://api.whatsapp.com/send?phone=${item.interested_to_user?.phone}&text=Hi ${item.interested_to_user?.name}, ${item.interested_to_user?.name} is interested in you.`, '_blank', 'noopener,noreferrer')}
-                          className="hover:bg-green-700 w-[110px]"
-                        >
-                          Chat Now
-                        </Button> */}
+                        <Link to={`/user-details/${btoa(item.id)}`}>
+                          <Button
+                            variant="contained"
+                            size="sm"
+                            color="green"
+                            className="hover:bg-green-700 w-[110px]"
+                          >
+                            View Profile
+                          </Button>
+                        </Link>
                         <Button
                           size="sm"
                           color="red"
@@ -475,12 +503,14 @@ function Myintrest() {
                       key={index}
                       className="w-full shadow-lg flex flex-col sm:flex-row items-center p-2 border-2 border-green-100 rounded-lg bg-white hover:bg-gradient-to-t from-green-50 to-green-200 transition-all duration-300 ease-in-out"
                     >
-                      <Avatar
-                        src={`${URLIMAGE}/${item.interested_from_user?.image}`}
-                        alt="user avatar"
-                        size="xl"
-                        className="mb-4 sm:mb-0 sm:mr-4"
-                      />
+                      <Link to={`/user-details/${btoa(item.id)}`}>
+                        <Avatar
+                          src={`${URLIMAGE}/${item.interested_to_user?.image}`}
+                          alt="user avatar"
+                          size="xl"
+                          className="mb-4 sm:mb-0 sm:mr-4"
+                        />
+                      </Link>
                       <CardBody className="flex-1 p-2">
                         <Typography
                           variant="h6"
@@ -497,7 +527,8 @@ function Myintrest() {
                           {item.interested_from_user?.dob?.split("-")[0]}y |{" "}
                           <strong>
                             {item.interested_from_user?.marital_status}
-                          </strong>
+                          </strong>{" "}
+                          | <strong>{item.interested_from_user?.city}</strong>
                         </Typography>
                         <Typography
                           color="gray"

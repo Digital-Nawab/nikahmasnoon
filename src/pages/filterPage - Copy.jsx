@@ -269,7 +269,7 @@ const FilterPage = () => {
                         </Typography>
                         <Typography color="gray" className="font-semibold text-sm">
                           <FaFireAlt className="inline text-green-400 mr-1" />
-                          {calculateAge(profile.dob)}y | {profile.marital_status}
+                          {calculateAge(profile.dob)}y | {profile.marital_status} | {profile.city}
                         </Typography>
                         <Typography color="gray" className="font-semibold text-sm">
                           <FaBriefcase className="inline text-green-400 mr-1" />

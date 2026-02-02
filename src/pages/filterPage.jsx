@@ -187,7 +187,7 @@ const FilterPage = () => {
                           setUserFilter(option.target.value);
                           fetchUserData();
                         }}
-                        placeholder="User Id"
+                        placeholder="Search by Id/Name"
                       />
                     </div>
                     {/* <button
@@ -419,6 +419,16 @@ const FilterPage = () => {
                       placeholder="User Id"
                     />
                   </div> */}
+                  <div className="w-full mb-3">
+                    <input
+                      className="w-full border border-gray-400 rounded-lg p-2"
+                      onChange={(option) => {
+                        setUserFilter(option.target.value);
+                        fetchUserData();
+                      }}
+                      placeholder="Search by Id/Name"
+                    />
+                  </div>
 
                   <form className="space-y-4">
                     <Select
@@ -578,57 +588,79 @@ const FilterPage = () => {
             </React.Fragment>
 
             {/* Results Section */}
-            <div className="col-span-12 lg:col-span-8 z-10 sm:bg-green-100">
+            <div className="col-span-12 lg:col-span-8 z-10 ">
               {/* {error && <ErrorMessage error={error} />} */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 z-auto">
-                {results?.map((profile, index) => (
-                  <div
-                    key={index}
-                    className="flex border border-green-100 bg-gradient-to-r from-green-50 to-red-50 shadow-lg hover:shadow-2xl hover:border-green-500 rounded-lg overflow-hidden transition duration-300"
-                  >
-                    <div className="relative w-2/5">
-                      <img
-                        src={`${URLIMAGE}/${profile.image}`}
-                        alt={profile.name}
-                        className="w-full h-[160px] object-cover"
-                      />
-                    </div>
-                    <div className="w-3/5 text-left p-3">
-                      <Typography variant="h6" className="mb-1 capitalize">
-                        {profile.name}
-                      </Typography>
-                      <Typography
-                        color="gray"
-                        className="font-semibold text-sm"
-                      >
-                        <FaFireAlt className="inline text-green-400 mr-1" />
-                        {calculateAge(profile.dob)}y | {profile.marital_status}
-                      </Typography>
-                      <Typography
-                        color="gray"
-                        className="font-semibold text-sm"
-                      >
-                        <FaBriefcase className="inline text-green-400 mr-1" />
-                        {profile.occupation}
-                      </Typography>
-                      <Typography
-                        color="gray"
-                        className="font-semibold text-sm"
-                      >
-                        <FaMosque className="inline text-green-400 mr-1" />
-                        {profile.caste}, {profile.sub_caste}
-                      </Typography>
-                      <div className="flex items-center mt-3">
-                        <Link
-                          to={`/user-details/${btoa(profile.id)}`}
-                          className="rounded-md bg-green-700 text-white text-sm py-1 px-2"
+                {results?.map((profile, index) => {
+                  console.log(profile);
+                  return (
+                    <div
+                      key={index}
+                      className="flex border border-green-100 bg-gradient-to-r from-green-50 to-red-50 shadow-lg hover:shadow-2xl hover:border-green-500 rounded-lg overflow-hidden transition duration-300"
+                    >
+                      <div className="relative w-2/5">
+                        <img
+                          src={`${URLIMAGE}/${profile.image}`}
+                          alt={profile.name}
+                          className="w-full h-[160px] object-cover"
+                        />
+                      </div>
+                      <div className="w-3/5 text-left p-3">
+                        <div className="flex items-center mb-1 gap-1 ">
+                          <Typography variant="h6" className=" capitalize">
+                            {profile.name}
+                          </Typography>
+                          {profile?.has_active_subscription && (
+                            <span>
+                              <svg
+                                className="ms-1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                fill="#298f06"
+                                version="1.1"
+                                viewBox="0 0 512 512"
+                                xmlSpace="preserve"
+                              >
+                                <path d="M434.068 46.758L314.607 9.034a194.624 194.624 0 00-117.214 0L77.932 46.758C52.97 54.641 36 77.796 36 103.973v207.39a120 120 0 0048.816 96.607l117.032 86.234a91.29 91.29 0 00108.304 0l117.032-86.234A120 120 0 00476 311.363v-207.39c0-26.177-16.97-49.332-41.932-57.215zm-86.144 180.958l-98.995 98.995c-11.716 11.716-30.711 11.716-42.426 0l-42.427-42.426c-11.716-11.716-11.716-30.711 0-42.426 11.716-11.716 30.711-11.716 42.426 0l21.213 21.213 77.782-77.782c11.716-11.716 30.711-11.716 42.426 0 11.717 11.715 11.717 30.71.001 42.426z"></path>
+                              </svg>
+                            </span>
+                          )}
+                        </div>
+                        <Typography
+                          color="gray"
+                          className="font-semibold text-sm"
                         >
-                          View Profile
-                        </Link>
+                          <FaFireAlt className="inline text-green-400 mr-1" />
+                          {calculateAge(profile.dob)}y |{" "}
+                          {profile.marital_status} | {profile.city}
+                        </Typography>
+                        <Typography
+                          color="gray"
+                          className="font-semibold text-sm"
+                        >
+                          <FaBriefcase className="inline text-green-400 mr-1" />
+                          {profile.occupation}
+                        </Typography>
+                        <Typography
+                          color="gray"
+                          className="font-semibold text-sm"
+                        >
+                          <FaMosque className="inline text-green-400 mr-1" />
+                          {profile.caste}, {profile.sub_caste}
+                        </Typography>
+                        <div className="flex items-center mt-3">
+                          <Link
+                            to={`/user-details/${btoa(profile.id)}`}
+                            className="rounded-md bg-green-700 text-white text-sm py-1 px-2"
+                          >
+                            View Profile
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
               {loading && <LoadingSkeleton />}
               <div className="flex justify-center mt-6">

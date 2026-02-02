@@ -1,4 +1,4 @@
-const URL = 'https://nikahmasnoon.digitalnawab.com';
-const URLIMAGE = 'https://nikahmasnoon.com';
+const URL = 'https://admin.nikahmasnoon.com';
+const URLIMAGE = 'https://admin.nikahmasnoon.com';
 
 export { URL, URLIMAGE };

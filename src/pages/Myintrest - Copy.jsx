@@ -99,7 +99,8 @@ function Myintrest() {
           <Typography color="gray" className="font-semibold text-xs sm:text-sm">
             <FaFireAlt className="inline text-green-400 mr-1" />{' '}
             {interest.interested_from_user?.dob?.split('-')[0]}y |{' '}
-            <strong>{interest.interested_from_user?.marital_status}</strong>
+            <strong>{interest.interested_from_user?.marital_status}</strong>|{' '}
+            <strong>{interest.interested_from_user?.city}</strong>
           </Typography>
           <Typography color="gray" className="text-xs font-semibold sm:text-sm">
             <FaBriefcase className="inline text-green-400 mr-1" /> {interest.interested_from_user?.occupation}

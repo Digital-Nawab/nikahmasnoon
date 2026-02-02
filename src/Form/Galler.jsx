@@ -86,7 +86,7 @@ function Galler() {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "https://nikahmasnoon.digitalnawab.com/api/delete-user-gallery",
+      url: "https://admin.nikahmasnoon.com/api/delete-user-gallery",
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
@@ -224,7 +224,7 @@ function Galler() {
             profileGallery.map((image, index) => (
               <div key={index} className="relative group">
                 <img
-                  src={`https://nikahmasnoon.digitalnawab.com/${image?.image_path}`}
+                  src={`https://admin.nikahmasnoon.com/${image?.image_path}`}
                   alt={`Gallery image ${index + 1}`}
                   className="w-full h-40 object-cover rounded-lg"
                   // onError={(e) => { e.target.src = 'fallback-image-url'; toast.error(`Failed to load gallery image ${index + 1}`); }}

@@ -62,6 +62,7 @@ function Mymatch() {
       const response = await axios.get(`${URL}/api/my-match?page=${page}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log(response)
       setMatches(response.data.data.data);
       setTotalPages(response.data.data.last_page);
       setError(null);
@@ -108,14 +109,31 @@ function Mymatch() {
                       />
                     </div>
                     <div className="w-3/5 text-left p-3">
-                      <Typography variant="h6" color="blue-gray" className="mb-1 capitalize">
+                      <Typography variant="h6" color="blue-gray" className="mb-1 capitalize flex items-center">
                         <span className="flex truncate items-center capitalize">
                           {match.name.toUpperCase()}
                         </span>
+                        {match?.has_subscription && (
+                            <span>
+                              <svg
+                                className="ms-1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                fill="#298f06"
+                                version="1.1"
+                                viewBox="0 0 512 512"
+                                xmlSpace="preserve"
+                              >
+                                <path d="M434.068 46.758L314.607 9.034a194.624 194.624 0 00-117.214 0L77.932 46.758C52.97 54.641 36 77.796 36 103.973v207.39a120 120 0 0048.816 96.607l117.032 86.234a91.29 91.29 0 00108.304 0l117.032-86.234A120 120 0 00476 311.363v-207.39c0-26.177-16.97-49.332-41.932-57.215zm-86.144 180.958l-98.995 98.995c-11.716 11.716-30.711 11.716-42.426 0l-42.427-42.426c-11.716-11.716-11.716-30.711 0-42.426 11.716-11.716 30.711-11.716 42.426 0l21.213 21.213 77.782-77.782c11.716-11.716 30.711-11.716 42.426 0 11.717 11.715 11.717 30.71.001 42.426z"></path>
+                              </svg>
+                            </span>
+                          )}
                       </Typography>
                       <Typography color="gray" className="font-semibold text-xs sm:text-sm">
                         <FaFireAlt className="inline text-green-400 mr-1" /> {calculateAge(match.dob)}y |{" "}
-                        <strong>{match.marital_status}</strong>
+                        <strong>{match.marital_status}</strong>|{" "}
+                        <strong>{match.city}</strong>
                       </Typography>
                       <Typography color="gray" className="text-xs font-semibold sm:text-sm">
                         <FaBriefcase className="inline text-green-400 mr-1" /> {match.occupation}

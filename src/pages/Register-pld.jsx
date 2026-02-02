@@ -115,7 +115,7 @@ export function Register() {
 
 
     try {
-      const response = await axios.post('https://nikahmasnoon.digitalnawab.com/api/new-registration', formData, {
+      const response = await axios.post('https://admin.nikahmasnoon.com/api/new-registration', formData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: '1|MohDsaLeEmDIgitTalNawab|NikahMasnoon'

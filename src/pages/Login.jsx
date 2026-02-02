@@ -13,11 +13,12 @@ export function Login() {
   const [userData, setUserData] = useState({});
 
   const isUserPremium = ({ data }) => {
+    console.log("IsPremium",data)
     const token = sessionStorage.getItem("token");
     if (token) {
       const endDate = new Date(data?.payment_subscriptions[0]?.end_date);
       const currentDate = new Date();
-      if (currentDate <= endDate) {
+      if (currentDate <= endDate && data?.payment_subscriptions[0]?.payment_status == "Success") {
         return true;
       } else {
         return false;
@@ -29,13 +30,15 @@ export function Login() {
     try {
       const token = sessionStorage.getItem("token");
       const response = await axios.get(
-        "https://nikahmasnoon.digitalnawab.com/api/my-profile",
+        "https://admin.nikahmasnoon.com/api/my-profile",
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
+
+      console.log("Profile data:", response);
 
       const ispremium = isUserPremium({ data: response?.data?.data });
       console.log("ispremium", ispremium);
@@ -49,12 +52,14 @@ export function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://nikahmasnoon.digitalnawab.com/api/user-login",
+        "https://admin.nikahmasnoon.com/api/user-login",
         {
           email,
           password,
         }
       );
+
+      console.log("Login response:", response);
 
       // Assuming the response contains user data along with the token
       sessionStorage.setItem("token", response.data.token);
@@ -160,7 +165,7 @@ export function Login() {
                     color="gray"
                     className="mt-4 text-right font-normal"
                   >
-                    <a href="#" className="font-medium text-gray-800">
+                    <a target="_blank" href="https://nikahmasnoon.blogspot.com/2025/07/custumer-care.html" className="font-medium text-gray-800">
                       Forgot Password?
                     </a>
                   </Typography>

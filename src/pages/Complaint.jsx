@@ -54,7 +54,7 @@ const Complaint = () => {
         }
 
         try {
-            const response = await axios.post('https://nikahmasnoon.digitalnawab.com/api/complaint', formDataToSend, {
+            const response = await axios.post('https://admin.nikahmasnoon.com/api/complaint', formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${sessionStorage.getItem('token')}`
@@ -79,7 +79,7 @@ const Complaint = () => {
     useEffect(() => {
         const fetchComplaints = async () => {
             try {
-                const response = await axios.get('https://nikahmasnoon.digitalnawab.com/api/my-complaint', {
+                const response = await axios.get('https://admin.nikahmasnoon.com/api/my-complaint', {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem('token')}`
                     }

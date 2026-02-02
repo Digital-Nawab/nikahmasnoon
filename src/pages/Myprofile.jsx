@@ -55,13 +55,14 @@ function Myprofile() {
       try {
         const token = sessionStorage.getItem("token");
         const response = await axios.get(
-          "https://nikahmasnoon.digitalnawab.com/api/my-profile",
+          "https://admin.nikahmasnoon.com/api/my-profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
+        console.log(response)
         setProfileData(response?.data?.data);
         const ispremium = isUserPremium({ data: response?.data?.data });
         sessionStorage.setItem("ispremium", ispremium);
@@ -84,7 +85,7 @@ function Myprofile() {
       const config = {
         method: "post",
         maxBodyLength: Infinity,
-        url: "https://nikahmasnoon.digitalnawab.com/api/delete-account",
+        url: "https://admin.nikahmasnoon.com/api/delete-account",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -295,7 +296,7 @@ function Myprofile() {
                     )}
                 </div>
                 {profileData?.gallery &&
-                  profileData?.gallery?.length !== "0" && (
+                  profileData?.gallery?.length != "0" && (
                     <div className="bg-gradient-to-tr from-orange-50 to-cyan-50 rounded-lg p-4">
                       <Typography
                         variant="h3"
@@ -313,7 +314,7 @@ function Myprofile() {
                           plugins={[lgThumbnail, lgZoom]}
                         >
                           {profileData.gallery?.map((image, index) => {
-                            const imageUrl = `https://nikahmasnoon.digitalnawab.com/${image?.image_path}`;
+                            const imageUrl = `https://admin.nikahmasnoon.com/${image?.image_path}`;
                             return (
                               <a key={index} href={imageUrl}>
                                 <img
@@ -334,7 +335,7 @@ function Myprofile() {
             <div className="w-full md:w-1/4 bg-gray-100 shadow-lg rounded-lg p-6 mb-4 md:mb-0">
               <div className="flex flex-col items-center mb-4">
                 <img
-                  src={`https://nikahmasnoon.digitalnawab.com/${profileData.image}`}
+                  src={`https://admin.nikahmasnoon.com/${profileData.image}`}
                   alt="Profile"
                   className="rounded-full w-24 h-24 object-cover mb-4"
                 />

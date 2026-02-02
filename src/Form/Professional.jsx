@@ -249,10 +249,16 @@ function Professional() {
             <Select
               name="annual_income"
               value={createSelectValue(profileData?.annual_income)}
-              options={success?.income?.map((item) => ({
-                value: item.title,
-                label: item.title,
-              }))}
+              options={[
+                { value: "prefer not to say", label: "Prefer Not to Say" },
+                { value: "0L to 0L", label: "Not Earning" },
+                { value: "1 to 3L", label: "1 to 3L" },
+                { value: "3 to 5L", label: "3 to 5L" },
+                { value: "5 to 10L", label: "5 to 10L" },
+                { value: "10 to 15L", label: "10 to 15L" },
+                { value: "15 to 20L", label: "15 to 20L" },
+                { value: "20L to 20L", label: "Above 20L" },
+              ]}
               onChange={(option) =>
                 handleSelectChange("annual_income", option.value)
               }

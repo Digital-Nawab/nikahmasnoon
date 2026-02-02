@@ -105,7 +105,7 @@ function About() {
                 <Typography color="green" className="text-center mb-3">
                   Indian Muslims typically search profiles based on:
                 </Typography>
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                   <div className="flex items-center">
                     <div className="bg-green-500 rounded-full p-2 mr-3">
                       <svg

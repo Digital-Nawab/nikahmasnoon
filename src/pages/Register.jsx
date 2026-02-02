@@ -72,7 +72,7 @@ export function Register() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://nikahmasnoon.digitalnawab.com/api/new-registration",
+        "https://admin.nikahmasnoon.com/api/new-registration",
         formData,
         {
           headers: {
@@ -150,7 +150,7 @@ export function Register() {
             <Card
               color="gray-200"
               shadow={true}
-              className="flex flex-col md:flex-row overflow-hidden w-full"
+              className="flex flex-col md:flex-row overflow-x-hidden w-full"
             >
               <div className="flex flex-col md:flex-row w-full">
                 <div className="md:w-1/2  items-center justify-center hidden md:block  overflow-hidden">
@@ -418,7 +418,7 @@ export function Register() {
                               name="height"
                               required
                               options={success?.Height?.map((item) => ({
-                                value: `${item?.height_cm}`,
+                                value: `${item?.height_feet}' ${item?.height_inches}" - ${item?.height_cm}cm`,
                                 label: ` ${item?.height_feet}ft  ${item?.height_inches}in - ${item?.height_cm}cm `,
                               }))}
                               onChange={(option) =>

@@ -131,7 +131,7 @@ function Allverifypartner() {
                                                 </span>
                                             </Typography>
                                             <Typography color="gray" className="font-semibold capitalize text-xs sm:text-sm">
-                                                <FaFireAlt className="inline text-green-400 mr-1" /> {calculateAge(partner.dob)}y | <strong className=''>{partner.marital_status}</strong>
+                                                <FaFireAlt className="inline text-green-400 mr-1" /> {calculateAge(partner.dob)}y | <strong className=''>{partner.marital_status}</strong>  | <strong className=''>{partner.city}</strong>
                                             </Typography>
                                             <Typography color="gray" className="text-xs capitalize font-semibold sm:text-sm">
                                                 <FaBriefcase className="inline text-green-400 mr-1" /> {partner.occupation}

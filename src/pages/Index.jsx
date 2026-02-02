@@ -204,11 +204,15 @@ function Index() {
               Find Your Perfect Life Partner
             </h2>
             <p className="text-lg lg:w-2/3  mb-6">
-              The man dreams of a perfect woman and the woman dreams of a
-              perfect man and they don't know that Allah created them to perfect
-              one another. <br /> Marriage (Nikah) is considered as an act of
-              worship (Ibadat). It is a Social as well as a religious activity.
-              Islam advocates simplicity in ceremonies and celebrations.
+              💍 Find Your Life Partner the Masnoon Way with Nikah Masnoon It is
+              more than just a matchmaking platform — it's a commitment to
+              helping Muslims find meaningful, lasting companionship rooted in
+              Islamic values. 
+              <br /> <br /> It is an easy-to-use app for Indian Muslims looking to find
+              a pious life partner the masnoon way. It has verified profiles,
+              matches that suit you, and keeps Islamic values and family values
+              first, making it simple to get verified profiles with Special
+              assistance of relationship managers to help you out.
             </p>
             <div className="flex justify-center md:justify-start gap-4">
               <a href="#" className="">
@@ -229,20 +233,21 @@ function Index() {
           </div>
 
           {/* Phone Mockups */}
-          <div className="md:w-1/2 col-span-3 lg:col-span-1 flex justify-center gap-4">
+          <div className="md:w-1/2 col-span-3 lg:col-span-1 flex justify-center items-center gap-4">
             <img
               src="/assets/images/user/mobile.png"
-              className="rounded-[20px] lg:h-full h-[200px]"
+              className="rounded-[20px] lg:max-h-[400px] max-h-[200px]"
               alt=""
             />
             <img
               src="/assets/images/user/mobile2.png"
-              className="rounded-[20px] lg:h-full h-[200px]"
+              className="rounded-[20px] lg:max-h-[400px] max-h-[200px]"
               alt=""
             />
           </div>
         </div>
       </section>
+
       <Dialog
         className="rounded-[30px] overflow-hidden p-6"
         size="xs"
@@ -263,7 +268,11 @@ function Index() {
             />
           </div>
 
-          <a href="https://play.google.com/store/games?hl=en" target="_blank" className="">
+          <a
+            href="https://play.google.com/store/apps/details?id=com.digitalnawab.nikahmasnoon"
+            target="_blank"
+            className=""
+          >
             <img
               src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
               alt="Get it on Google Play"

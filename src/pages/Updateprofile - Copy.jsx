@@ -183,7 +183,7 @@ function Updateprofile() {
     const fetchProfileData = async () => {
       try {
         const token = sessionStorage.getItem('token');
-        const response = await axios.get('https://nikahmasnoon.digitalnawab.com/api/my-profile', {
+        const response = await axios.get('https://admin.nikahmasnoon.com/api/my-profile', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -203,7 +203,7 @@ function Updateprofile() {
     console.log(profileData)
     e.preventDefault();
     try {
-      const response = await axios.post('https://nikahmasnoon.digitalnawab.com/api/update-profile', profileData, {
+      const response = await axios.post('https://admin.nikahmasnoon.com/api/update-profile', profileData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
@@ -226,7 +226,7 @@ function Updateprofile() {
     setSelectedCity(null); // Reset selected city
 
     axios
-      .get(`https://nikahmasnoon.digitalnawab.com/api/states?country_id=${selectedOption.value}`) // Replace with your endpoint
+      .get(`https://admin.nikahmasnoon.com/api/states?country_id=${selectedOption.value}`) // Replace with your endpoint
       .then((response) => {
         setStates(
           response.data.map((item) => ({
@@ -245,7 +245,7 @@ function Updateprofile() {
     setSelectedCity(null); // Reset selected city
 
     axios
-      .get(`https://nikahmasnoon.digitalnawab.com/api/cities?state_id=${selectedOption.value}`) // Replace with your endpoint
+      .get(`https://admin.nikahmasnoon.com/api/cities?state_id=${selectedOption.value}`) // Replace with your endpoint
       .then((response) => {
         setCities(
           response.data.map((item) => ({

@@ -52,11 +52,11 @@ function BasicInfo() {
           },
         });
 
-        console.log(response.data.data);
+        console.log(response);
         setProfileData(response?.data?.data || {});
         if (response?.data?.data?.image) {
           setPreviewImage(
-            `https://nikahmasnoon.digitalnawab.com/${response.data.data.image}`
+            `https://admin.nikahmasnoon.com/${response.data.data.image}`
           );
         }
       } catch (error) {
@@ -510,7 +510,7 @@ function BasicInfo() {
                     }
                     required
                     options={success?.Height?.map((item) => ({
-                      value: item.height_cm,
+                      value: `${item?.height_feet}' ${item?.height_inches}" - ${item?.height_cm}cm`,
                       label: `${item.height_feet}ft ${item.height_inches}in - ${item.height_cm}cm`,
                     }))}
                     onChange={(option) =>
